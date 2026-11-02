@@ -204,15 +204,15 @@ For - перебирает значения по порядку
 
 ```
 for i in range(6):
-print (i)
+    print (i)
 Вывод: 0 1 2 3 4 5 
 
 #Счётчик букв
 Text = "Hello my brother. How are you?"
 count = 0
 for i in Text:
-if i == "o":
-count += 1
+    if i == "o":
+        count += 1
 print("total:", count)
 #Вывод 4
 ```
