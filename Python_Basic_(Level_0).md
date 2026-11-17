@@ -875,6 +875,116 @@ Random.randit(от, до) - создается рандомное числ ти�
 ```
 
 Событийное программирование - программа реагирует на события (например нажатия кнопки или отправки сообщения)
+Пример:
+```
+from datetime import datetime
 
+def get_time():
+    return datetime.now().strftime("%H:%M")
 
+def calculator():
+    try:
+        num1 = float(input("Введите 1-е число: "))
+        num2 = float(input("Введите 2-е число: "))
+        math_operation = input("Выберите математическую операцию (+, -, *,/)").strip()
+        if math_operation == "+":
+            return f"{num1} + {num2} = {num1 + num2}"
+        elif math_operation == "-":
+            return f"{num1} - {num2} = {num1 - num2}"
+        elif math_operation == "*":
+            return f"{num1} * {num2} = {num1 * num2}"
+        elif math_operation == "/":
+            try:
+                return f"{num1} / {num2} = {num1/num2}"
+            except ZeroDivisionError:
+                return f"Ошибка, деление на 0 невозможно!"
+        else:
+            return "Неизвестная математическая операция!"
+    except ValueError:
+        return "Ошибка, вы ввели не число!"
 
+def handle_message(usertext):
+    if usertext == "Привет":
+        return "Привет! чем могу помочь?"
+    elif usertext == "Как дела?":
+        return "Всё отлично!"
+    elif usertext == "Пока":
+        return "До встречи!"
+    elif usertext == "Время":
+        return get_time()
+    elif usertext == "Калькулятор":
+        return calculator()
+    else:
+        return "Я пока не знаю такой команды"
+    
+while True:
+    message = input("Ты: ").strip().capitalize()
+    answer = handle_message(message)
+    print("Бот:",answer)
+    if message == "Пока":
+        break
+```
+## 2.2) Модули и импорт в Python
+
+**Модуль** - это обычный файл в Python(```.py```), в котором находятся функции, переменные и классы, которые можно использовать в других файлах
+
+Например:
+Вместо одного большого файла
+```
+main.py
+```
+Можно организовать проект так, поделив его на **МОДУЛИ**:
+```
+My_project/
+|
+|-main.py
+|-calculator.py
+|-get_time.py
+```
+В модуле ```Calculator.py``` будут функции калькулятора, в модуле ```get_time.py``` - работа со временем, а ```main.py``` будет управлять программой.
+
+**Как работает import**
+import - импортирует модуль(тот же самый файл) и затем работает с функциями из этого модуля
+
+Файл calculator.py
+```
+def add(a,b):
+    return a + b
+```
+
+Файл main.py
+```
+import calculator
+
+result = calculator.add(5,10)
+
+print(result) # 15
+```
+
+**Три способа импорта**
+
+3 способа как подключать содержимое модулей
+
+Способ №1 - import
+```
+import calculator
+
+print(calculator.add(5, 10))
+```
+Импортируем модуль целиком
+
+Способ №2 - from ... import
+```
+from calculator import add
+
+print(add(5, 10))
+```
+Импортируем из модуля ```calculator``` функцию ```add```
+
+Способ №3 - import ... as
+```
+import calculator as calc
+
+print(calc.add(5, 10))
+```
+Дали модулю короткое имя ```calc```, нужно это если у модуля очень длинное название
