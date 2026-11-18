@@ -1126,7 +1126,7 @@ print(sys.path)
 
 **self** - ссылка на конкретный объект, с которым работает метод
 
-Например класс машин (где есть бренд, модель, год выпуска)
+Например *класс* машин (где есть бренд, модель, год выпуска)
 ```
 class Car:
     def __init__(self, brand, model, year):
@@ -1140,4 +1140,18 @@ neibhourcar = Car("Toyota", "Camry", 2024)
 print(f"Моя машина: {mycar.brand, mycar.model}")
 print(f"Машина соседа: {neibhourcar.brand, neibhourcar.model}")
 ```
+Добавим метод
+```
+class Car:
+    def __init__(self, brand, model, year):
+        self.brand = brand
+        self.model = model
+        self.year = year
+    
+    def show_info(self): #Метод
+        print(f"{self.brand} {self.model}, {self.year}")
 
+mycar = Car("BMW","X-5", 2022)
+neibhourcar = Car("Toyota", "Camry", 2024)
+
+mycar.show_info()
