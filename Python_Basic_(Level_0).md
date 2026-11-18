@@ -988,3 +988,109 @@ import calculator as calc
 print(calc.add(5, 10))
 ```
 Дали модулю короткое имя ```calc```, нужно это если у модуля очень длинное название
+
+## 2.3)Пакеты Python
+
+**Пакет** -  способ объединить несколько модулей в общую структуру, обычно с помощью папки
+
+**__init__.py** - специальный файл, который используется при создании пакетов в Python
+
+Структура будет выглядеть так:
+```
+Project/
+|
+|--main.py
+|--utils #Пакет
+    |--__init__.py #спец файл
+    |--calculator.py #-модуль
+    |--time_utils.py #-модуль
+```
+
+Файл calculator.py
+```
+def add(a, b):
+    return a + b
+
+def multiply(a, b):
+    return a * b
+```
+
+Файл time_utils.py
+```
+from datetime import datetime
+
+def get_time():
+    return datetime.now().strftime("%H:%M")
+```
+
+Файл main.py
+```
+from utils.calculator import add,multiply
+from utils.time_utils import get_time
+
+print(f"Сумма = {add(10,20)}")
+print(f"Умножение = {multiply(5,5)}")
+print(f"Время = {get_time()}")
+```
+
+Новый способ импорта ```from package.calculator import add, multiply```
+
+Где:
+
+```package``` - пакет
+
+```calculator``` - модуль, внутри пакета
+
+```add, multiply``` - импортируемые функции
+
+## 2.4) Как Python ищет модули и почему возникает ```ModuleNotFoundError```
+
+**Что такое ```sys.path```**
+
+```sys.path``` - список директорий, которые Python использует при поиске модулей
+```
+import sys
+print(sys.path)
+```
+Выполнив этот код, ты увидишь список путей, в которых Python ищет модулей.
+
+**Что такое ```ModuleNotFoundError```**
+
+Представим, что у тебя есть такая структура:
+```
+MyProject/
+│
+├── main.py
+│
+└── utils/
+    ├── __init__.py
+    └── calculator.py
+```
+В ```main.py``` ты пишешь:
+```
+from utils.calculator import add
+```
+
+Но случайно называешь файл:
+```calculater.py```
+
+Python пытается найти ```calculator.py```, но не находит его.
+
+В результате появляется ошибка:
+```
+ModuleNotFoundError:
+No module named 'utils.calculator'
+```
+То есть Python сообщает: «Я не могу найти указанный модуль».
+
+**5 распространённых ошибок**
+
+1 - Неправильное название файла
+
+2 - Неправильный путь импорта
+
+3 - Запуск программы не из той дериктории
+
+4 - Отсутствует нужная библиотека
+
+5 - Опечатка в названии пакета или модуля
