@@ -1156,9 +1156,27 @@ neibhourcar = Car("Toyota", "Camry", 2024)
 
 mycar.show_info()
 ```
-## 2.6) Инкапсуляцмя
+## 2.6) Наследование, инкапсуляцмя
+**Наследование** - класс который берёт шаблон другого класса и дополняет себе характеристики
+```
+class Transport:
+    brand = None
+    color = None
+    horse_power = 0
+    def __init__(self,brand,color,horse_power):
+        self.brand = brand
+        self.color = color
+        self.horse_power = horse_power
+    
+class Truck(Transport):
+    weight = 0
+    def __init__(self,weight,brand,color,horse_power):
+        power(Truck, self) __init__(brand,color,horse_power)
 
-Инкапсуляция - принцип организации класса, позволяющий скрывать внутренние детали и контролировать работу с данными через методы. 
+```
+```super()``` - инструмент для работы с наследованием, позволяет удобно передать параметры от родителя(```Transport```) к сыну (```Truck```)
+
+**Инкапсуляция** - принцип организации класса, позволяющий скрывать внутренние детали и контролировать работу с данными через методы. 
 
 **Три варианта атрибутов в Python**
 
